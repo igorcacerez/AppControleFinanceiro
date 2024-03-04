@@ -1,16 +1,27 @@
-import React, {useContext, useState} from "react"
-import {StyleSheet, View, Text, TextInput, Button, Modal, Pressable, Alert, ScrollView} from "react-native"
+import React, {useContext, useRef, useState} from "react"
+import {StyleSheet, View, Text, TextInput, Button, Pressable, Alert, ScrollView} from "react-native"
 import Dados from "../context/DadosContext"
 import {MaterialCommunityIcons} from "@expo/vector-icons";
+import {Modalize} from "react-native-modalize";
 
 export default function({navigation}) {
   const {despesas, setDespesas} = useContext(Dados)
 
   const [nome, setNome] = useState("")
   const [valor, setValor] = useState("")
-  const [modalVisible, setModalVisible] = useState(false)
+
+  const modalizeRef = useRef(null);
+
+  const onOpen = () => {
+    modalizeRef.current?.open()
+  };
+
+  const closeModal = () => {
+    modalizeRef.current?.close()
+  }
 
   function cadastrar() {
+
     // Cria uma copia dos valores existente na receita
     let aux = [...despesas]
 
@@ -27,8 +38,8 @@ export default function({navigation}) {
     // Atualiza a despesas com o item adicionado
     setDespesas(aux)
 
-    // Manda para a home
-    setModalVisible(!modalVisible)
+    // Fecha o modal
+    closeModal()
 
     // Zera
     setNome("")
@@ -51,56 +62,50 @@ export default function({navigation}) {
 
         <Pressable
           style={[css.button, css.buttonOpen]}
-          onPress={() => setModalVisible(true)}>
+          onPress={onOpen}>
           <Text style={[css.textStyle, {color: "#000"}]}>+</Text>
         </Pressable>
       </View>
 
-     <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}>
+     <Modalize ref={modalizeRef}
+               disableScrollIfPossible={false}
+               adjustToContentHeight={true}>
         <View style={css.centeredView}>
-          <View style={css.modalView}>
-            <Text style={css.modalText}>Nova despesa</Text>
+          <Text style={css.modalText}>Nova despesa</Text>
 
-            <View style={{width: "100%", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
-              <Text style={{fontSize: 30, paddingLeft: 30, color: "#a39f9e"}}>R$</Text>
-              <TextInput
+          <View style={{width: "100%", flexDirection: "row", alignItems: "center", justifyContent: "flex-start"}}>
+            <Text style={{fontSize: 30, paddingLeft: 30, color: "#a39f9e"}}>R$</Text>
+            <TextInput
                 value={valor}
                 onChangeText={(e) => setValor(e)}
                 style={[css.input, {borderBottomWidth: 0, fontSize: 30}]}
                 placeholder="00.00"
                 keyboardType="numeric"
-              />
-            </View>
+            />
+          </View>
 
-            <TextInput
+          <TextInput
               value={nome}
               onChangeText={(e) => setNome(e)}
               style={[css.input, {marginHorizontal: 30, width: "90%", borderTopWidth: 1}]}
               placeholder="Ex: Aluguel"
               keyboardType="default"
-            />
+          />
 
 
-            <Pressable
+          <Pressable
               style={[css.button, css.buttonClose]}
               onPress={cadastrar}>
-              <Text style={css.textStyle}>Salvar Despesa</Text>
-            </Pressable>
+            <Text style={css.textStyle}>Salvar Despesa</Text>
+          </Pressable>
 
-            <Pressable
+          <Pressable
               style={[css.button, css.buttonClose, css.buttonCancel]}
-              onPress={() => setModalVisible(!modalVisible)}>
-              <Text style={[css.textStyle, css.textStyleCancel]}>Cancelar</Text>
-            </Pressable>
-          </View>
+              onPress={closeModal}>
+            <Text style={[css.textStyle, css.textStyleCancel]}>Cancelar</Text>
+          </Pressable>
         </View>
-      </Modal>
+      </Modalize>
 
 
       {despesas.length > 0 ? (
@@ -196,7 +201,7 @@ const css = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    marginTop: 37,
+    paddingBottom: 60
   },
 
   modalView: {

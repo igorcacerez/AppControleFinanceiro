@@ -1,6 +1,5 @@
 import React, {useState} from "react"
-import {StyleSheet, View, Text} from "react-native"
-import { createStackNavigator } from '@react-navigation/stack';
+import {CardStyleInterpolators, createStackNavigator} from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import Home from "./screens/Home"
 import Despesas from "./screens/Despesas"
@@ -24,7 +23,14 @@ export default function() {
   return(
     <Dados.Provider value={{receitas, setReceitas, despesas, setDespesas, investimentos, setInvestimentos}}>
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="Home">
+        <Stack.Navigator
+            screenOptions={{
+                headerShown: false,
+                gestureEnabled: true,
+                gestureDirection: "horizontal",
+                cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
+            }}
+            initialRouteName="Home">
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Despesas" component={Despesas} />
           <Stack.Screen name="Receitas" component={Receitas} />
