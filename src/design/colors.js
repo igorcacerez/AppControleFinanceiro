@@ -8,4 +8,7 @@ export default {
     secundaryLight: "#eaf1f6",
     text: "#313131",
     textLight: "#ffffff",
+    textGray: "#6f7983",
+    success: "#28a745",
+    danger: "#fa6571",
 }

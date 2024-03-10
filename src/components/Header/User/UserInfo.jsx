@@ -1,14 +1,14 @@
 import ViewRow from "../../ui/layouts/ViewRow";
-import IconsAwesome from "../../../adapters/IconsAwesome";
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import colors from "../../../design/colors";
+import Icons from "../../../adapters/Icons";
 
 export default ({nome, conta}) => {
     return (
         <ViewRow>
             <ViewRow justify={"flex-start"} gap={15}>
                 <View style={styles.iconPerfil}>
-                    <IconsAwesome color={colors.primary} name="user-circle-o" style={styles.opacity} size={25} />
+                    <Icons color={colors.primary} name="account-circle-outline" style={styles.opacity} size={25} />
                 </View>
                 <View>
                     <Text style={styles.name}>{nome}</Text>
@@ -17,7 +17,7 @@ export default ({nome, conta}) => {
             </ViewRow>
 
             <TouchableOpacity>
-                <IconsAwesome color={colors.textLight} style={styles.opacity} name="gear" size={25} />
+                <Icons color={colors.textLight} style={styles.opacity} name="cog-outline" size={25} />
             </TouchableOpacity>
         </ViewRow>
     )
