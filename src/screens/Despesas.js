@@ -1,6 +1,6 @@
 import React, {useContext, useRef, useState} from "react"
 import {StyleSheet, View, Text, TextInput, Button, Pressable, Alert, ScrollView} from "react-native"
-import Dados from "../context/DadosContext"
+import Dados from "../context/FinanceContext"
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 import {Modalize} from "react-native-modalize";
 

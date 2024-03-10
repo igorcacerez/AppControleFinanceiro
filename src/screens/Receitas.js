@@ -1,6 +1,6 @@
 import React, {useContext, useState} from "react"
 import {StyleSheet, View, Text, TextInput, Button, Modal, Pressable, Alert, ScrollView} from "react-native"
-import Dados from "../context/DadosContext"
+import Dados from "../context/FinanceContext"
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function({navigation}) {
