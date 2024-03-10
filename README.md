@@ -14,3 +14,7 @@ Este projeto tem como objetivo criar um aplicativo de controle financeiro, onde 
 3. Rodar o projeto com `yarn start`
 4. Escanear o QR Code com o aplicativo do Expo
 5. Pronto, o projeto estará rodando em seu dispositivo
+
+## Demonstração
+
+![image](https://raw.githubusercontent.com/igorcacerez/AppControleFinanceiro/main/assets/exibicao.gif)
