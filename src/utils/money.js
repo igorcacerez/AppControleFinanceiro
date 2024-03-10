@@ -4,9 +4,5 @@
  * @returns {string}
  */
 export function moneyFormat(value) {
-    return parseFloat(value)
-        .toLocaleString(
-        'pt-BR',
-        {style: 'currency', currency: 'BRL'}
-        );
+    return parseFloat(value).toFixed(2).replace(".", ",")
 }
