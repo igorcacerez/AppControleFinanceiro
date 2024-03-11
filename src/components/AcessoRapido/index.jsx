@@ -16,7 +16,7 @@ export default ({ navigation, title }) => {
                     press={() => navigation.navigate("Receitas")} />
 
                 <ButtonIconRound
-                    icon="chevron-double-down"
+                    icon="currency-usd"
                     title="Depesas"
                     press={() => navigation.navigate("Despesas")} />
 

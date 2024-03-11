@@ -5,10 +5,10 @@ import Logo from "../ui/utils/Logo";
 import ViewRow from "../ui/layouts/ViewRow";
 import IconProfile from "./User/IconProfile";
 
-export default ({profile}) => {
+export default ({profile, navigation}) => {
     return (
         <ViewRow>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.openDrawer()}>
                 <Icons color={colors.textLight} name="menu" size={30} />
             </TouchableOpacity>
 

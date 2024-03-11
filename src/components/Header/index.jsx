@@ -7,7 +7,7 @@ import UserBalance from "./User/UserBalance";
 export default ({profile, navigation}) => {
     return (
         <View style={styles.header}>
-            <TopBar profile={profile.slug} />
+            <TopBar navigation={navigation} profile={profile.slug} />
             <View style={{padding: 20, paddingTop: 30, gap: 30}}>
                 <UserInfo nome={profile.name} conta={profile.conta} />
                 <UserBalance saldo={profile.balance} />

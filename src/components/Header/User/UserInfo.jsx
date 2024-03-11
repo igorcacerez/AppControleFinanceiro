@@ -2,14 +2,13 @@ import ViewRow from "../../ui/layouts/ViewRow";
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import colors from "../../../design/colors";
 import Icons from "../../../adapters/Icons";
+import IconProfileImage from "./IconProfileImage";
 
 export default ({nome, conta}) => {
     return (
         <ViewRow>
             <ViewRow justify={"flex-start"} gap={15}>
-                <View style={styles.iconPerfil}>
-                    <Icons color={colors.primary} name="account-circle-outline" style={styles.opacity} size={25} />
-                </View>
+                <IconProfileImage />
                 <View>
                     <Text style={styles.name}>{nome}</Text>
                     <Text style={styles.conta}>Conta {conta}</Text>
@@ -24,14 +23,6 @@ export default ({nome, conta}) => {
 }
 
 const styles = StyleSheet.create({
-    iconPerfil: {
-        backgroundColor: colors.bgLight,
-        borderRadius: 50,
-        width: 40,
-        height: 40,
-        alignItems: "center",
-        justifyContent: "center"
-    },
     name: {
         fontSize: 20,
         fontWeight: "bold",
