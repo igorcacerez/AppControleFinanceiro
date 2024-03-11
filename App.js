@@ -3,6 +3,7 @@ import AppNavigation from "./src/navigation/AppNavigation";
 import {FinanceProvider} from "./src/context/FinanceContext";
 import {StatusBar} from "react-native";
 import colors from "./src/design/colors";
+import {ModalProvider} from "./src/context/ModalContext";
 
 /**
  * Aplicação principal
@@ -11,8 +12,10 @@ import colors from "./src/design/colors";
 export default function() {
   return(
       <FinanceProvider>
-          <AppNavigation />
-          <StatusBar barStyle="light-content" backgroundColor={colors.primary} translucent={true} />
+          <ModalProvider>
+              <AppNavigation />
+              <StatusBar barStyle="light-content" backgroundColor={colors.primary} translucent={true} />
+          </ModalProvider>
       </FinanceProvider>
   )
 }

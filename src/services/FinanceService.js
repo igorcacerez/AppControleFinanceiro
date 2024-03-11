@@ -22,7 +22,6 @@ function add(setData, data, news) {
     if(news?.tipe !== "receitas" && news?.tipe !== "despesas" )
         throw new Error("Tipo inválido")
 
-
     setData([...data, news])
 }
 

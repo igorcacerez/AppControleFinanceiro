@@ -6,7 +6,6 @@ import AcessoRapido from "../components/AcessoRapido";
 import Movimentacoes from "../components/Movimentacoes";
 import movimentacoes from "../data/movimentacoes";
 import profile from "../data/profile";
-import MenuLateral from "../navigation/DrawerMenu";
 
 export default function Home({ navigation }) {
   return (
@@ -17,7 +16,7 @@ export default function Home({ navigation }) {
             <AcessoRapido title={"Acesso rápido"} navigation={navigation} />
         </ViewCenter>
 
-        <Movimentacoes data={movimentacoes} />
+        <Movimentacoes title={"Últimas movimentações"} data={movimentacoes} />
     </Container>
   )
 }

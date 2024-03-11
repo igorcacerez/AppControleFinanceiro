@@ -3,15 +3,15 @@ import ViewRow from "../../components/ui/layouts/ViewRow";
 import IconProfileImage from "../../components/Header/User/IconProfileImage";
 import Container from "../../components/ui/layouts/Container";
 import colors from "../../design/colors";
-import Icons from "../../adapters/Icons";
 import ItemMenu from "./ItemMenu";
+import {getSalutation} from "../../utils/salutation";
 
 export default () => {
     return (
         <Container>
             <ViewRow style={css.header} justify={"flex-start"} gap={10}>
                 <IconProfileImage />
-                <Text style={css.saudacao}>Boa Noite, Igor</Text>
+                <Text style={css.saudacao}>{getSalutation()}, Igor</Text>
             </ViewRow>
 
             <ScrollView style={css.scroll}>

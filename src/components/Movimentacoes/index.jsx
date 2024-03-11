@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from "react-native";
+import {ScrollView, StyleSheet, Text, View} from "react-native";
 import ViewCenter from "../ui/layouts/ViewCenter";
 import ViewRow from "../ui/layouts/ViewRow";
 import colors from "../../design/colors";
@@ -6,16 +6,17 @@ import Icons from "../../adapters/Icons";
 import TitleBox from "../ui/texts/TitleBox";
 import Item from "./Item";
 
-export default ({ data }) => {
-    return (
-        <View style={styles.card}>
-            <TitleBox>Últimas movimentações</TitleBox>
+export default ({ data, title, pb = 0}) => {
 
-            <ViewCenter>
-                { data.length > 0 ?
-                    data.map((item, index) => <Item key={index} type={item.type} title={item.title} date={item.date} value={item.value} />)
-                    : <Text style={styles.text}>Você não possui movimentações</Text>}
-            </ViewCenter>
+    const listaItem = () => {
+        if (data.length <= 0) return <Text style={styles.text}>Você não possui movimentações</Text>
+        return data.map((item, index) => <Item key={index} type={item.type} title={item.title} date={item.date} value={item.value} />)
+    }
+
+    return (
+        <View style={[styles.card, {paddingBottom: pb}]}>
+            {title && <TitleBox>{title}</TitleBox>}
+            <ViewCenter>{listaItem()}</ViewCenter>
         </View>
     )
 }
@@ -25,6 +26,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.bgLight,
         paddingVertical: 20,
         alignItems: "center",
+        flex: 1
     },
     text: {
         color: colors.text,

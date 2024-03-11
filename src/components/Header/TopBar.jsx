@@ -16,7 +16,7 @@ export default ({profile, navigation}) => {
 
             <ViewRow justify={"flex-end"} gap={15}>
                 <Icons name={"bell-outline"} style={{opacity: 0.85}} color={colors.textLight} size={25} />
-                <IconProfile profile={profile} />
+                {profile && <IconProfile profile={profile} />}
             </ViewRow>
         </ViewRow>
     )
