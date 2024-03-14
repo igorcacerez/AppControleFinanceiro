@@ -6,6 +6,7 @@ export default {
     primaryLight: "#fee8db",
     secondary: "#32a3a9",
     secundaryLight: "#eaf1f6",
+    blue: "#0ba1c2",
     text: "#313131",
     textLight: "#ffffff",
     textGray: "#6f7983",

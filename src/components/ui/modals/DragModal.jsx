@@ -31,10 +31,10 @@ const styles = StyleSheet.create({
         backgroundColor: colors.primary,
         padding: 20,
         borderTopEndRadius: 12,
-        borderTopStartRadius: 12
+        borderTopStartRadius: 12,
     },
     title: {
         color: colors.textLight,
-        fontSize: 20
+        fontSize: 16
     }
 })

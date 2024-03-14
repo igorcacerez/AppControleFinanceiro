@@ -4,24 +4,31 @@ import ViewRow from "../../components/ui/layouts/ViewRow";
 import BalanceItem from "../../components/Header/BalanceItem";
 import colors from "../../design/colors";
 import FloatButton from "../../components/ui/buttons/FloatButton";
-import DragModal from "../../components/ui/modals/DragModal";
 import {Modals} from "../../context/ModalContext";
 import {useContext} from "react";
-import ViewCenter from "../../components/ui/layouts/ViewCenter";
-import { TextInput } from 'react-native-paper';
 import {Finances} from "../../context/FinanceContext";
 import ListAll from "./ListAll";
-import {TouchableOpacity} from "react-native";
+import {Alert, TouchableOpacity} from "react-native";
+import InserModal from "./InserModal";
 
 export default function({navigation, route}) {
   const { type } = route.params;
 
   const modalContext = useContext(Modals);
-  const {getBalanceFinance, getFinance, removeFinance} = useContext(Finances)
+  const {addFinance, getBalanceFinance, getFinance, removeFinance} = useContext(Finances)
 
   let title = type === "receita" ? "Minhas receitas" : "Minhas despesas"
   let text = type === "receita" ? "Não possui receitas cadastradas" : "Não possui despesas cadastradas"
   let balance = getBalanceFinance()
+
+  let id = getFinance()[getFinance().length - 1]?.id + 1 || 1
+
+  const handleRemove = (id) => {
+      Alert.alert("Atenção", "Deseja realmente excluir?", [
+            {text: "Cancelar",  style: 'cancel'},
+            {text: "Deletar", onPress: () => removeFinance(id)}
+        ])
+  }
 
   return (
     <>
@@ -39,42 +46,13 @@ export default function({navigation, route}) {
 
             <ListAll title={title}
                      data={getFinance(type)}
-                     remove={removeFinance} not={text} />
+                     remove={handleRemove} not={text} />
         </Container>
 
-        <DragModal title={"Adicinar receita"}>
-            <ViewCenter>
-                <TextInput
-                    mode="outlined"
-                    label="Nome da receita"
-                    placeholder="Ex: Salário"
-                    theme={{ colors: { text: colors.text } }}
-                    activeOutlineColor={colors.primary}
-                    textColor={colors.primary}
-                />
-
-                <TextInput
-                    mode="outlined"
-                    label="Data da receita"
-                    placeholder="Ex: 01/01/2021"
-                    theme={{ colors: { text: colors.text } }}
-                    activeOutlineColor={colors.primary}
-                    textColor={colors.primary}
-                    mask="[00]/[00]/[0000]"
-                />
-
-                <TextInput
-                    mode="outlined"
-                    label="Valor da receita"
-                    placeholder="Ex: 300,00"
-                    theme={{ colors: { text: colors.text } }}
-                    activeOutlineColor={colors.primary}
-                    textColor={colors.primary}
-                />
-            </ViewCenter>
-        </DragModal>
+        <InserModal type={type} addAction={addFinance} id={id} />
 
         <FloatButton press={modalContext.onOpen} />
     </>
   )
 }
+

@@ -1,13 +1,15 @@
-import {createContext, useState} from "react"
+import {createContext, useEffect, useState} from "react"
 import FinanceService from "../services/FinanceService"
-import movimentacoes from "../data/movimentacoes";
-
 // Cria o contexto
 const Finances = createContext();
 
 const FinanceProvider = ({ children }) => {
 
-    const [finance, setFinance] = useState(movimentacoes)
+    const [finance, setFinance] = useState([])
+
+    useEffect(() => {
+        FinanceService.loadFinances(setFinance)
+    }, []);
 
     const addFinance = (item) => FinanceService.add(setFinance, finance, item)
     const getFinance = (tipe) => FinanceService.get(finance, tipe)

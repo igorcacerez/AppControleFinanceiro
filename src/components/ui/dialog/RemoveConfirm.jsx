@@ -1,9 +1,7 @@
 import * as React from 'react';
 import {Button, StyleSheet} from 'react-native';
 import { Dialog, Portal, Text } from 'react-native-paper';
-import Icons from "../../../adapters/Icons";
 import ViewRow from "../layouts/ViewRow";
-import {color} from "react-native-elements/dist/helpers";
 import colors from "../../../design/colors";
 
 const RemoveConfirm = ({remove, text = "Você deseja realmente excluir este item?", visible, setVisible}) => {

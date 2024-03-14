@@ -1,3 +1,5 @@
+import {setFinancesLocal} from "../../storage/financeStorage";
+
 /**
  * Remove um item da lista de dados
  * @param setData
@@ -14,5 +16,7 @@ export default async function remove(setData, data, itemId) {
 
     let aux = [...data];
     aux.splice(index, 1);
+
+    setFinancesLocal(aux)
     setData(aux)
 }

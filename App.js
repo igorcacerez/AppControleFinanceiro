@@ -8,6 +8,7 @@ import {ModalProvider} from "./src/context/ModalContext";
 import { AppRegistry } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { name as appName } from './app.json';
+import {UserProvider} from "./src/context/UserContext";
 
 /**
  * Aplicação principal
@@ -18,8 +19,10 @@ export default function Main() {
       <PaperProvider>
           <FinanceProvider>
               <ModalProvider>
-                  <AppNavigation />
-                  <StatusBar barStyle="light-content" backgroundColor={colors.primary} translucent={true} />
+                  <UserProvider>
+                      <AppNavigation />
+                      <StatusBar barStyle="light-content" backgroundColor={colors.primary} translucent={true} />
+                  </UserProvider>
               </ModalProvider>
           </FinanceProvider>
       </PaperProvider>

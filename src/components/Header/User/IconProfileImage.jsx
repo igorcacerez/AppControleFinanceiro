@@ -2,10 +2,14 @@ import Icons from "../../../adapters/Icons";
 import colors from "../../../design/colors";
 import {StyleSheet, View} from "react-native";
 
-export default ({icon = "account-circle-outline"}) => {
+export default ({
+    color = colors.primary,
+    icon = "account-circle-outline",
+    style = {}
+}) => {
     return (
-        <View style={styles.iconPerfil}>
-            <Icons color={colors.primary} name={icon} style={styles.opacity} size={25} />
+        <View style={[styles.iconPerfil, style]}>
+            <Icons color={color} name={icon} style={styles.opacity} size={25} />
         </View>
     )
 }

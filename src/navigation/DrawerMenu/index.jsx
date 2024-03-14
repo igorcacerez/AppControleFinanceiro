@@ -4,13 +4,19 @@ import IconProfileImage from "../../components/Header/User/IconProfileImage";
 import colors from "../../design/colors";
 import ItemMenu from "./ItemMenu";
 import {getSalutation} from "../../utils/salutation";
+import {Users} from "../../context/UserContext";
+import {useContext} from "react";
 
 export default () => {
+    const {getUser} = useContext(Users)
+    let user = getUser()
+    let fristName = user.name.split(" ")[0]
+
     return (
         <View style={{flex: 1}}>
             <ViewRow style={css.header} justify={"flex-start"} gap={10}>
                 <IconProfileImage />
-                <Text style={css.saudacao}>{getSalutation()}, Igor</Text>
+                <Text style={css.saudacao}>{getSalutation()}, {fristName}</Text>
             </ViewRow>
 
             <ScrollView style={css.scroll}>
