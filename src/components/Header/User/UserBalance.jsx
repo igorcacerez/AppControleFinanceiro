@@ -34,7 +34,7 @@ export default ({saldo}) => {
                 </ViewRow>
             </ViewRow>
 
-            <TouchableOpacity onPress={() => setExibir(!exibir)}>
+            <TouchableOpacity onPress={handleExibir}>
                 {exibir ?
                     <Icons name="eye-outline" size={20} color={colors.secondary} /> :
                     <Icons name="eye-off-outline" size={20} color={colors.secondary} />}
