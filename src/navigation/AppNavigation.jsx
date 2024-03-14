@@ -2,9 +2,8 @@ import React from "react"
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import Home from "../screens/Home"
-import Despesas from "../screens/Despesas"
-import Receitas from "../screens/Receitas"
 import DrawerMenu from "./DrawerMenu";
+import FinanceScreen from "../screens/finances/FinanceScreen";
 
 // Cria a navegação
 const Drawer = createDrawerNavigator()
@@ -21,8 +20,7 @@ export default function() {
                 screenOptions={{headerShown: false}}
                 initialRouteName="Home">
                 <Drawer.Screen name="Home" component={Home} />
-                <Drawer.Screen name="Despesas" component={Despesas} />
-                <Drawer.Screen name="Receitas" component={Receitas} />
+                <Drawer.Screen name="Finance" component={FinanceScreen} />
             </Drawer.Navigator>
         </NavigationContainer>
     )

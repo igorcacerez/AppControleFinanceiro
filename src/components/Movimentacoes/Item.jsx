@@ -4,18 +4,20 @@ import colors from "../../design/colors";
 import Icons from "../../adapters/Icons";
 import {moneyFormat} from "../../utils/money";
 
-export default function Item({type, date, value, title}) {
+export default function Item({type, date, value, title, icon = true, style = {}}) {
 
     let color = type === "despesa" ? colors.primary : colors.secondary;
     let colorSecundary = type === "despesa" ? colors.primaryLight : colors.secundaryLight;
-    let icon = type === "despesa" ? "chevron-double-down" : "chevron-double-up";
+    let iconType = type === "despesa" ? "chevron-double-down" : "chevron-double-up";
 
     return (
-        <ViewRow style={styles.cardItem}>
+        <ViewRow style={[styles.cardItem, style]}>
             <ViewRow gap={10}>
-                <View style={[styles.iconCardRound, {backgroundColor: colorSecundary}]}>
-                    <Icons name={icon} size={25} color={color} />
-                </View>
+                {icon && (
+                    <View style={[styles.iconCardRound, {backgroundColor: colorSecundary}]}>
+                        <Icons name={iconType} size={25} color={color} />
+                    </View>
+                )}
                 <View>
                     <Text style={styles.cardTitle}>{title}</Text>
                     <Text style={styles.cardTitleTime}>{date}</Text>
@@ -40,7 +42,7 @@ const styles = StyleSheet.create({
         padding: 15,
         backgroundColor: colors.bgLight,
         borderRadius: 5,
-        borderWidth: 1,
+        borderBottomWidth: 1,
         borderColor: colors.secundaryLight,
         width: "100%",
         marginVertical: 5

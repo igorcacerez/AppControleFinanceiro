@@ -6,10 +6,14 @@ import Icons from "../../adapters/Icons";
 import TitleBox from "../ui/texts/TitleBox";
 import Item from "./Item";
 
-export default ({ data, title, pb = 0}) => {
+export default ({ data, title, pb = 0, limit}) => {
 
     const listaItem = () => {
+        // Verifica se existe movimentações
         if (data.length <= 0) return <Text style={styles.text}>Você não possui movimentações</Text>
+
+        // Limita a quantidade de itens a serem exibidos
+        if (limit) data = data.slice(0, limit)
         return data.map((item, index) => <Item key={index} type={item.type} title={item.title} date={item.date} value={item.value} />)
     }
 

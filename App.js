@@ -5,17 +5,25 @@ import {StatusBar} from "react-native";
 import colors from "./src/design/colors";
 import {ModalProvider} from "./src/context/ModalContext";
 
+import { AppRegistry } from 'react-native';
+import { Provider as PaperProvider } from 'react-native-paper';
+import { name as appName } from './app.json';
+
 /**
  * Aplicação principal
  * @returns {JSX.Element}
  */
-export default function() {
+export default function Main() {
   return(
-      <FinanceProvider>
-          <ModalProvider>
-              <AppNavigation />
-              <StatusBar barStyle="light-content" backgroundColor={colors.primary} translucent={true} />
-          </ModalProvider>
-      </FinanceProvider>
+      <PaperProvider>
+          <FinanceProvider>
+              <ModalProvider>
+                  <AppNavigation />
+                  <StatusBar barStyle="light-content" backgroundColor={colors.primary} translucent={true} />
+              </ModalProvider>
+          </FinanceProvider>
+      </PaperProvider>
   )
 }
+
+AppRegistry.registerComponent(appName, () => Main);

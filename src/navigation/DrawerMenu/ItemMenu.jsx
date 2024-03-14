@@ -4,11 +4,11 @@ import colors from "../../design/colors";
 import {Text, TouchableOpacity, StyleSheet} from "react-native";
 import {useNavigation} from "@react-navigation/native";
 
-export default ({icon, text, screen}) => {
+export default ({icon, text, screen, data = {}}) => {
     const navigation = useNavigation()
 
     return (
-        <TouchableOpacity onPress={() => navigation.navigate(screen)} style={{marginBottom: 18}}>
+        <TouchableOpacity onPress={() => navigation.navigate(screen, data)} style={{marginBottom: 18}}>
             <ViewRow justify={"flex-start"} gap={15}>
                 <Icons name={icon} size={32} color={colors.text} />
                 <Text style={styles.textItem}>{text}</Text>

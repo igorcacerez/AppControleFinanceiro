@@ -13,12 +13,12 @@ export default ({ navigation, title }) => {
                 <ButtonIconRound
                     icon="cash-multiple"
                     title="Receitas"
-                    press={() => navigation.navigate("Receitas")} />
+                    press={() => navigation.navigate("Finance", {type: "receita"})} />
 
                 <ButtonIconRound
                     icon="currency-usd"
                     title="Depesas"
-                    press={() => navigation.navigate("Despesas")} />
+                    press={() => navigation.navigate("Finance", {type: "despesa"})} />
 
                 <ButtonIconRound
                     icon="chart-box-outline"
