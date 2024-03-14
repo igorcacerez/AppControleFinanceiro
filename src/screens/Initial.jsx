@@ -16,7 +16,7 @@ export default ({ navigation }) => {
 
     async function login(){
         let result = await LocalAuthentication.authenticateAsync({
-            promptMessage: 'Autentique',
+            promptMessage: 'Autenticação necessária',
             cancelLabel: 'Cancelar',
             disableDeviceFallback: true,
         });
