@@ -2,13 +2,25 @@ import ViewRow from "../../ui/layouts/ViewRow";
 import {Text, TouchableOpacity} from "react-native";
 import Icons from "../../../adapters/Icons";
 import colors from "../../../design/colors";
-import {useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import userBalanceStyle from "./UserBalanceStyle";
 import {moneyFormat} from "../../../utils/money";
+import {Users} from "../../../context/UserContext";
 
 export default ({saldo}) => {
+    const { getUser, updateUser } = useContext(Users)
 
-    const [exibir, setExibir] = useState(true)
+    const [exibir, setExibir] = useState(false)
+
+    useEffect(() => {
+        let user = getUser()
+        setExibir(user?.visibleSaldo)
+    }, []);
+
+    const handleExibir = () => {
+        setExibir(!exibir)
+        updateUser("visibleSaldo", !exibir)
+    }
 
     let styles = userBalanceStyle(exibir)
 
