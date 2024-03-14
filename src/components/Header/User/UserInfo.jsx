@@ -4,20 +4,16 @@ import colors from "../../../design/colors";
 import Icons from "../../../adapters/Icons";
 import IconProfileImage from "./IconProfileImage";
 
-export default ({nome, conta}) => {
+export default ({ nome }) => {
     return (
         <ViewRow>
             <ViewRow justify={"flex-start"} gap={15}>
                 <IconProfileImage />
                 <View>
                     <Text style={styles.name}>{nome}</Text>
-                    <Text style={styles.conta}>Conta {conta}</Text>
+                    <Text style={styles.conta}>Controle suas despesas.</Text>
                 </View>
             </ViewRow>
-
-            <TouchableOpacity>
-                <Icons color={colors.textLight} style={styles.opacity} name="cog-outline" size={25} />
-            </TouchableOpacity>
         </ViewRow>
     )
 }

@@ -5,7 +5,7 @@ import Logo from "../ui/utils/Logo";
 import ViewRow from "../ui/layouts/ViewRow";
 import IconProfile from "./User/IconProfile";
 
-export default ({profile, navigation}) => {
+export default ({navigation}) => {
     return (
         <ViewRow>
             <TouchableOpacity onPress={() => navigation.openDrawer()}>
@@ -15,8 +15,9 @@ export default ({profile, navigation}) => {
             <Logo />
 
             <ViewRow justify={"flex-end"} gap={15}>
-                <Icons name={"bell-outline"} style={{opacity: 0.85}} color={colors.textLight} size={25} />
-                {profile && <IconProfile profile={profile} />}
+                <TouchableOpacity>
+                    <Icons color={colors.textLight} style={{opacity: 0.85}} name="cog-outline" size={25} />
+                </TouchableOpacity>
             </ViewRow>
         </ViewRow>
     )

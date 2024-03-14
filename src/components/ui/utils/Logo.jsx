@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: "bold",
         letterSpacing: -2,
-        color: colors.textLight,
-        marginLeft: 20
+        color: colors.textLight
     }
 })

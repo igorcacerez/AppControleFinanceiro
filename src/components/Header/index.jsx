@@ -10,7 +10,7 @@ export default ({profile, navigation, children, full = true}) => {
             <TopBar navigation={navigation} profile={profile?.slug} />
             {full && (
                 <View style={{padding: 20, paddingTop: 30, gap: 30}}>
-                    <UserInfo nome={profile.name} conta={profile.conta} />
+                    <UserInfo nome={profile.name} />
                     <UserBalance saldo={profile.balance} />
                 </View>
             )}

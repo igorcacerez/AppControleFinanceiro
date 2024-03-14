@@ -11,6 +11,7 @@ import ViewCenter from "../../components/ui/layouts/ViewCenter";
 import { TextInput } from 'react-native-paper';
 import {Finances} from "../../context/FinanceContext";
 import ListAll from "./ListAll";
+import {TouchableOpacity} from "react-native";
 
 export default function({navigation, route}) {
   const { type } = route.params;
@@ -27,8 +28,12 @@ export default function({navigation, route}) {
         <Container style={{backgroundColor: colors.bgLight, paddingBottom: 30}} scroll={false}>
             <Header navigation={navigation} full={false}>
                 <ViewRow justify={"space-between"} style={{paddingVertical: 20}}>
-                    <BalanceItem title={"Receitas"} value={balance.receitas} icon={"arrow-up"} />
-                    <BalanceItem title={"Depesas"} value={balance.despesas} icon={"arrow-down"} />
+                    <TouchableOpacity onPress={() => navigation.navigate("Finance", {type: "receita"})}>
+                        <BalanceItem title={"Receitas"} value={balance.receitas} icon={"arrow-up"} />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate("Finance", {type: "despesa"})}>
+                        <BalanceItem title={"Depesas"} value={balance.despesas} icon={"arrow-down"} />
+                    </TouchableOpacity>
                 </ViewRow>
             </Header>
 
@@ -41,8 +46,29 @@ export default function({navigation, route}) {
             <ViewCenter>
                 <TextInput
                     mode="outlined"
-                    label="Outlined input"
-                    placeholder="Type something"
+                    label="Nome da receita"
+                    placeholder="Ex: Salário"
+                    theme={{ colors: { text: colors.text } }}
+                    activeOutlineColor={colors.primary}
+                    textColor={colors.primary}
+                />
+
+                <TextInput
+                    mode="outlined"
+                    label="Data da receita"
+                    placeholder="Ex: 01/01/2021"
+                    theme={{ colors: { text: colors.text } }}
+                    activeOutlineColor={colors.primary}
+                    textColor={colors.primary}
+                    mask="[00]/[00]/[0000]"
+                />
+
+                <TextInput
+                    mode="outlined"
+                    label="Valor da receita"
+                    placeholder="Ex: 300,00"
+                    theme={{ colors: { text: colors.text } }}
+                    activeOutlineColor={colors.primary}
                     textColor={colors.primary}
                 />
             </ViewCenter>
