@@ -9,20 +9,9 @@ import {Users} from "../../../context/UserContext";
 
 export default ({saldo}) => {
     const { getUser, updateUser } = useContext(Users)
+    let user = getUser()
 
-    const [exibir, setExibir] = useState(false)
-
-    useEffect(() => {
-        let user = getUser()
-        setExibir(user?.visibleSaldo)
-    }, []);
-
-    const handleExibir = () => {
-        setExibir(!exibir)
-        updateUser("visibleSaldo", !exibir)
-    }
-
-    let styles = userBalanceStyle(exibir)
+    let styles = userBalanceStyle(user.visibleSaldo)
 
     return (
         <ViewRow style={styles.bg}>
@@ -34,8 +23,8 @@ export default ({saldo}) => {
                 </ViewRow>
             </ViewRow>
 
-            <TouchableOpacity onPress={handleExibir}>
-                {exibir ?
+            <TouchableOpacity onPress={() => updateUser("visibleSaldo", !user.visibleSaldo)}>
+                {user.visibleSaldo ?
                     <Icons name="eye-outline" size={20} color={colors.secondary} /> :
                     <Icons name="eye-off-outline" size={20} color={colors.secondary} />}
             </TouchableOpacity>

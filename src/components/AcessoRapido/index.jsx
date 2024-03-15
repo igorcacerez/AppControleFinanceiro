@@ -23,7 +23,7 @@ export default ({ navigation, title }) => {
                 <ButtonIconRound
                     icon="chart-box-outline"
                     title="Invest"
-                    press={() => navigation.navigate("Investimentos")} />
+                    press={() => navigation.navigate("Investments")} />
             </ViewRow>
         </CardShadow>
     )
