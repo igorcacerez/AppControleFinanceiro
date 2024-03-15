@@ -35,7 +35,7 @@ export default ({ navigation }) => {
                         <ButtonIcon
                             icon={"account"}
                             title={"Acessar sua conta"}
-                            text={"Seja bem-vindo devolta."}
+                            text={"Seja bem-vindo de volta!"}
                             press={login} />
                     ) : (
                         <ButtonIcon
