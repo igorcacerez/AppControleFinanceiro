@@ -2,10 +2,14 @@ import ViewCenter from "../../components/ui/layouts/ViewCenter";
 import Input from "../../adapters/Input";
 import ButtonLarge from "../../components/ui/buttons/ButtonLarge";
 import DragModal from "../../components/ui/modals/DragModal";
-import {useState} from "react";
+import {useRef, useState} from "react";
 import {Alert} from "react-native";
+import {TextInputMask} from "react-native-masked-text";
+import * as React from "react";
 
 export default ( { saveUser, navigation }) => {
+    const ref = useRef();
+
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
@@ -28,7 +32,16 @@ export default ( { saveUser, navigation }) => {
 
                 <Input label={"Seu telefone"}
                        placeholder={"Ex: (11) 99999-9999"}
-                       value={phone} change={setPhone} keyboardType={"numeric"} />
+                       render={(props) => (
+                           <TextInputMask
+                               {...props}
+                               value={phone}
+                               type="cel-phone"
+                               ref={ref}
+                               onChangeText={(text) => setPhone(text)}
+                           />
+                       )}
+                       value={phone}  keyboardType={"numeric"} />
 
                 <Input label={"Seu e-mail"}
                        placeholder={"Ex: exemplo@email.com"}

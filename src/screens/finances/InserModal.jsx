@@ -1,13 +1,19 @@
 import ViewCenter from "../../components/ui/layouts/ViewCenter";
 import {Alert, Text, TouchableOpacity} from "react-native";
 import DragModal from "../../components/ui/modals/DragModal";
-import {useContext, useState} from "react";
+import {useContext, useRef, useState} from "react";
 import Input from "../../adapters/Input";
 import ButtonLarge from "../../components/ui/buttons/ButtonLarge";
 import {Modals} from "../../context/ModalContext";
+import {TextInputMask} from "react-native-masked-text";
+import * as React from "react";
+import {moneyFormatToNumber} from "../../utils/money";
 
 export default ({type, addAction, id}) => {
     const modalContext = useContext(Modals)
+
+    const ref = useRef()
+    const ref2 = useRef()
 
     const [name, setName] = useState("");
     const [date, setDate] = useState("");
@@ -23,11 +29,14 @@ export default ({type, addAction, id}) => {
 
     const handleAdd = () => {
         try {
+            let limparValor = moneyFormatToNumber(value)
+
             addAction({
                 id, date, type,
                 title: name,
-                value: parseFloat(value)
+                value: limparValor
             })
+
             modalContext.onClose()
             clear()
         } catch (e) {
@@ -43,13 +52,34 @@ export default ({type, addAction, id}) => {
                        value={name} change={setName} />
 
                 <Input label={"Data da " + type}
-                          placeholder={"Ex: 01/01/2021"}
-                          value={date} change={setDate} />
+                           placeholder={"Ex: 01/01/2021"}
+                           value={date}
+                           keyboardType={"numeric"}
+                           render={(props) => (
+                               <TextInputMask
+                                   {...props}
+                                   value={date}
+                                   type="datetime"
+                                   ref={ref}
+                                   onChangeText={(text) => setDate(text)}
+                               />
+                           )}
+                    />
 
                 <Input label={"Valor da " + type}
                         placeholder={"Ex: 300.00"}
                         keyboardType={"numeric"}
-                        value={value} change={setValue} />
+                        value={value}
+                        render={(props) => (
+                           <TextInputMask
+                               {...props}
+                               value={value}
+                               type="money"
+                               ref={ref2}
+                               onChangeText={(text) => setValue(text)}
+                           />
+                        )}
+                />
             </ViewCenter>
 
             <ButtonLarge press={handleAdd} text={"Cadastrar"} icon={"plus"} />

@@ -2,9 +2,10 @@ import * as React from 'react';
 import {Alert, StyleSheet, Text, View} from 'react-native';
 import Dialog from "../../../adapters/dialog/Dialog";
 import Input from "../../../adapters/Input";
-import {useContext, useState} from "react";
+import {useContext, useRef, useState} from "react";
 import {Users} from "../../../context/UserContext";
 import ButtonLarge from "../buttons/ButtonLarge";
+import {TextInputMask} from "react-native-masked-text";
 
 const UserSetings = ({visible, setVisible}) => {
     const {getUser, addUser} = useContext(Users)
@@ -13,6 +14,8 @@ const UserSetings = ({visible, setVisible}) => {
     const [name, setName] = useState(user.name)
     const [phone, setPhone] = useState(user.phone);
     const [email, setEmail] = useState(user.email);
+
+    const ref = useRef()
 
     const handleUpdateUser = () => {
         try {
@@ -33,12 +36,22 @@ const UserSetings = ({visible, setVisible}) => {
                       placeholder={"Nome"} />
 
                <Input label={"Seu E-mail"}
+                      keyboardType={"email-address"}
                       value={email} change={setEmail}
                       placeholder={"E-mail"} />
 
                <Input label={"Seu Celular"}
-                      keyboardType={"email-address"}
-                      value={phone} change={setPhone}
+                      keyboardType={"numeric"}
+                      value={phone}
+                      render={(props) => (
+                          <TextInputMask
+                              {...props}
+                              value={phone}
+                              type="cel-phone"
+                              ref={ref}
+                              onChangeText={(text) => setPhone(text)}
+                          />
+                      )}
                       placeholder={"Celular"} />
 
                <ButtonLarge press={handleUpdateUser} text={"Alterar Informações"} icon={""} />
