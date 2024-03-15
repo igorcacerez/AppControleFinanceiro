@@ -24,6 +24,7 @@ export default () => {
                 <ItemMenu screen={"Finance"} data={{type: "receita"}} icon={"cash-multiple"} text={"Minhas Receitas"} />
                 <ItemMenu screen={"Finance"} data={{type: "despesa"}} icon={"currency-usd"} text={"Minhas Despesas"} />
                 <ItemMenu screen={"Investimentos"} icon={"chart-box-outline"} text={"Investimentos"} />
+                <ItemMenu screen={"Initial"} icon={"logout"} text={"Sair"} />
             </ScrollView>
         </View>
     )

@@ -24,16 +24,15 @@ const DrawerStack = () => {
     )
 }
 
-
 export default function() {
     return(
         <NavigationContainer>
             <Stack.Navigator screenOptions={{
-                    headerShown: false,
-                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
-                }} initialRouteName="Initial">
-                    <Stack.Screen name={"Initial"} component={Initial} />
-                    <Stack.Screen name={"DrawerStack"} component={DrawerStack} />
+                headerShown: false,
+                cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
+            }} initialRouteName="Initial">
+                <Stack.Screen name={"Initial"} component={Initial} />
+                <Stack.Screen name={"DrawerStack"} component={DrawerStack} />
             </Stack.Navigator>
         </NavigationContainer>
     )
