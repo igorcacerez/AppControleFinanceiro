@@ -1,4 +1,4 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Dimensions, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Container from "../components/ui/layouts/Container";
 import Header from "../components/Header";
 import {useContext} from "react";
@@ -7,10 +7,18 @@ import ViewRow from "../components/ui/layouts/ViewRow";
 import Icons from "../adapters/Icons";
 import IconProfileImage from "../components/Header/User/IconProfileImage";
 import colors from "../design/colors";
+import {ProgressChart} from "react-native-chart-kit";
 
 export default ({ navigation }) => {
     const {getUser, updateUser} = useContext(Users)
     let user = getUser()
+
+    const data = {
+        labels: ["Swim", "Bike", "Run"], // optional
+        data: [0.4, 0.6, 0.8]
+    };
+
+    const width = Dimensions.get('window').width
 
     return (
         <Container>
@@ -29,6 +37,24 @@ export default ({ navigation }) => {
                 </ViewRow>
             </Header>
 
+            <ProgressChart
+                data={data}
+                width={width}
+                height={220}
+                strokeWidth={16}
+                radius={32}
+                chartConfig={{
+                    backgroundColor: colors.textLight,
+                    backgroundGradientFrom: colors.secundaryLight,
+                    backgroundGradientTo: colors.secundaryLight,
+                    color: (opacity = 1) => `rgba(20, 0, 0, ${opacity})`,
+                    style: {
+                        borderRadius: 16
+                    }
+                }}
+                hideLegend={false}
+            />
+
             <ViewRow style={{flexWrap: "wrap", padding: 20}} gap={10}>
                 <TouchableOpacity style={styles.card}>
                     <Text style={styles.textBar}>Renda fixa</Text>
@@ -41,7 +67,7 @@ export default ({ navigation }) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.new}>
-                    <Icons name={"plus"} size={50} color={colors.secondary} />
+                    <Icons name={"plus"} size={50} color={colors.textGray} />
                 </TouchableOpacity>
             </ViewRow>
         </Container>
@@ -51,13 +77,12 @@ export default ({ navigation }) => {
 const styles = StyleSheet.create({
     card: {
         width: "47%",
-        padding: 10,
-        paddingVertical: 20,
+        padding: 20,
         marginBottom: 15,
         borderRadius: 15,
         backgroundColor: colors.background,
         justifyContent: "center",
-        alignItems: "center",
+        alignItems: "flex-start",
         borderWidth: 3,
         borderColor: colors.secundaryLight,
     },
@@ -66,12 +91,12 @@ const styles = StyleSheet.create({
         fontSize: 12
     },
     textBar: {
-        color: colors.text,
+        color: colors.textGray,
         fontSize: 12,
         paddingBottom: 5
     },
     valor: {
-        color: colors.text,
+        color: colors.textGray,
         fontSize: 20,
         fontWeight: "bold"
     },
