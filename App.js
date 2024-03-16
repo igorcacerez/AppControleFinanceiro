@@ -4,17 +4,14 @@ import {FinanceProvider} from "./src/context/FinanceContext";
 import {StatusBar} from "react-native";
 import colors from "./src/design/colors";
 import {ModalProvider} from "./src/context/ModalContext";
-
-import { AppRegistry } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
-import { name as appName } from './app.json';
 import {UserProvider} from "./src/context/UserContext";
 
 /**
  * Aplicação principal
  * @returns {JSX.Element}
  */
-export default function Main() {
+export default function App() {
   return(
       <PaperProvider>
           <FinanceProvider>
@@ -28,5 +25,3 @@ export default function Main() {
       </PaperProvider>
   )
 }
-
-AppRegistry.registerComponent(appName, () => Main);

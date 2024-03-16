@@ -15,11 +15,17 @@ export default ({ navigation }) => {
     let user = getUser()
 
     async function login(){
+        // Verifica se o dispositivo suporta autenticação
+        let compatible = await LocalAuthentication.hasHardwareAsync();
+        if (!compatible) return navigation.navigate("DrawerStack");
+
         let result = await LocalAuthentication.authenticateAsync({
             promptMessage: 'Autenticação necessária',
             cancelLabel: 'Cancelar',
             disableDeviceFallback: true,
         });
+
+        console.log(result)
 
         if (result.success) navigation.navigate("DrawerStack")
     }
