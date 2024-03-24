@@ -1,15 +1,22 @@
-import {View, Text, ImageBackground, StyleSheet, TouchableOpacity} from "react-native";
-import React, {useState} from "react";
+import {View, Text, ImageBackground, StyleSheet, TouchableOpacity, Alert} from "react-native";
+import React, {useContext, useState} from "react";
 import Input from "../adapters/Input";
 import Logo from "../components/ui/utils/Logo";
 import colors from "../design/colors";
+import {Users} from "../context/UserContext";
 
 export default ({ navigation }) => {
+    const {login} = useContext(Users)
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleLogin = () => {
-        console.log("Login")
+    const handleLogin = async () => {
+        try {
+            await login(email, password)
+            navigation.navigate("DrawerStack")
+        } catch (e) {
+            Alert.alert("Erro", e.message)
+        }
     }
     
     return (
@@ -31,7 +38,7 @@ export default ({ navigation }) => {
                         secure={true}
                         value={password} change={setPassword} />
 
-                    <TouchableOpacity style={styles.btn}>
+                    <TouchableOpacity style={styles.btn} onPress={handleLogin}>
                         <Text style={{color: colors.textLight, textAlign: "right", fontSize: 18, fontWeight: "bold"}}>
                             Acessar conta
                         </Text>

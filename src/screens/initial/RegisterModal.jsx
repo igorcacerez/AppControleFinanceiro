@@ -2,12 +2,14 @@ import ViewCenter from "../../components/ui/layouts/ViewCenter";
 import Input from "../../adapters/Input";
 import ButtonLarge from "../../components/ui/buttons/ButtonLarge";
 import DragModal from "../../components/ui/modals/DragModal";
-import {useRef, useState} from "react";
+import {useContext, useRef, useState} from "react";
 import {Alert} from "react-native";
 import {TextInputMask} from "react-native-masked-text";
 import * as React from "react";
+import {Users} from "../../context/UserContext";
 
 export default ( { saveUser, navigation }) => {
+    const {createUser} = useContext(Users)
     const ref = useRef();
 
     const [name, setName] = useState("");
@@ -15,9 +17,9 @@ export default ( { saveUser, navigation }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleAdd = () => {
+    async function handleAdd(){
         try {
-            saveUser({name, phone, email})
+            await createUser({name, phone, email, password})
             navigation.navigate("DrawerStack")
         } catch (e) {
             Alert.alert("Erro", e.message)
