@@ -1,4 +1,4 @@
-import {ImageBackground, StyleSheet, Text, View} from "react-native";
+import {ImageBackground, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import Logo from "../components/ui/utils/Logo";
 import colors from "../design/colors";
 import ButtonIcon from "../components/ui/buttons/ButtonIcon";
@@ -44,11 +44,19 @@ export default ({ navigation }) => {
                             text={"Seja bem-vindo de volta!"}
                             press={login} />
                     ) : (
-                        <ButtonIcon
-                            icon={"account-plus"}
-                            title={"Criar uma conta"}
-                            text={"Nosso app é totalmente grátis."}
-                            press={() => modalContext.onOpen()} />
+                        <>
+                            <ButtonIcon
+                                icon={"account-plus"}
+                                title={"Criar uma conta"}
+                                text={"Nosso app é totalmente grátis."}
+                                press={() => modalContext.onOpen()} />
+
+                            <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+                                <Text style={{color: colors.textLight, textAlign: "center", fontSize: 16, marginTop: 20}}>
+                                    Já possui uma conta? <Text style={{color: colors.primary, fontWeight: "bold"}}>Faça login</Text>
+                                </Text>
+                            </TouchableOpacity>
+                        </>
                     )}
                 </ImageBackground>
             </View>

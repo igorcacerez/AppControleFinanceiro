@@ -2,9 +2,9 @@ import {StyleSheet, Text, TouchableOpacity} from "react-native";
 import Icons from "../../../adapters/Icons";
 import colors from "../../../design/colors";
 
-export default function({text, icon, press}) {
+export default function({text, icon, press, style}) {
     return (
-        <TouchableOpacity onPress={press} style={styles.btn}>
+        <TouchableOpacity onPress={press} style={[styles.btn, style]}>
             <Text style={styles.txtBtn}>{text}</Text>
             {icon && <Icons name={icon} size={20} color={colors.textGray} />}
         </TouchableOpacity>

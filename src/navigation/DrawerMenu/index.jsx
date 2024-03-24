@@ -10,7 +10,7 @@ import {useContext} from "react";
 export default () => {
     const {getUser} = useContext(Users)
     let user = getUser()
-    let fristName = user.name.split(" ")[0]
+    let fristName = user?.name?.split(" ")[0]
 
     return (
         <View style={{flex: 1}}>

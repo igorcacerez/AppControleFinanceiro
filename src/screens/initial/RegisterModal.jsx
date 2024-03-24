@@ -13,6 +13,7 @@ export default ( { saveUser, navigation }) => {
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     const handleAdd = () => {
         try {
@@ -47,6 +48,12 @@ export default ( { saveUser, navigation }) => {
                        placeholder={"Ex: exemplo@email.com"}
                        keyboardType={"email-address"}
                        value={email} change={setEmail} />
+
+                <Input
+                    label={"Sua senha"}
+                    placeholder={"Digite sua senha"}
+                    secure={true}
+                    value={password} change={setPassword} />
             </ViewCenter>
 
             <ButtonLarge press={handleAdd} text={"Realizar cadastro"} icon={"plus"} />

@@ -7,6 +7,7 @@ import FinanceScreen from "../screens/finances/FinanceScreen";
 import Initial from "../screens/Initial";
 import {CardStyleInterpolators, createStackNavigator} from "@react-navigation/stack";
 import Investments from "../screens/Investments";
+import Login from "../screens/Login";
 
 // Cria a navegação
 const Drawer = createDrawerNavigator()
@@ -34,6 +35,7 @@ export default function() {
                 cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
             }} initialRouteName="Initial">
                 <Stack.Screen name={"Initial"} component={Initial} />
+                <Stack.Screen name={"Login"} component={Login} />
                 <Stack.Screen name={"DrawerStack"} component={DrawerStack} />
             </Stack.Navigator>
         </NavigationContainer>
