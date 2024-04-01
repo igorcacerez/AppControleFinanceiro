@@ -21,6 +21,10 @@ async function update(setUser, user, campo, valor) {
     userAux[campo] = valor;
 
     await setUserLocal(userAux);
+    let phone = await removeMaskPhone(userAux.phone);
+
+    await updateUser({displayName: userAux.name, phoneNumber: phone});
+
     setUser(userAux);
 }
 
@@ -31,7 +35,8 @@ async function create(setUser, newUser) {
     let response = await createUser(newUser.email, newUser.password);
     if (response.type === "error") throw new Error(getFirebaseAuthErrorDescription(response.error.code));
 
-    await updateUser({displayName: newUser.name, phoneNumber: await removeMaskPhone(newUser.phone)});
+    let phone = await removeMaskPhone(newUser.phone);
+    await updateUser({displayName: newUser.name, phoneNumber: phone});
 
     newUser.uid = response.user.uid;
     newUser.stsTokenManager = response.user.stsTokenManager;
@@ -43,11 +48,12 @@ async function create(setUser, newUser) {
 async function login(setUser, email, password) {
     let response = await loginUser(email, password);
     if (response.type === "error") {
-        console.log(response.error.code);
         throw new Error(getFirebaseAuthErrorDescription(response.error.code));
     }
 
     let user = response.user;
+    console.log(user);
+
     let userLocal = {
         uid: user.uid,
         name: user.displayName,

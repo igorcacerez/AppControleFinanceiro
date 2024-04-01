@@ -1,4 +1,6 @@
 import {setFinancesLocal} from "../../storage/financeStorage";
+import { doc, setDoc } from "firebase/firestore";
+import {db} from "../../config/firebase";
 
 /**
  * Adiciona um item a lista de dados
