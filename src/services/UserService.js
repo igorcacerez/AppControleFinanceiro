@@ -1,6 +1,5 @@
 import {getUserLocal, setUserLocal} from "../storage/userStorage";
 import {createUser, loginUser, updateUser} from "./request/UsersRequests";
-import {addMaskPhone, removeMaskPhone} from "../utils/phone";
 import {getFirebaseAuthErrorDescription} from "../utils/erros";
 
 const loadUser = async (setUser) => {
@@ -9,7 +8,7 @@ const loadUser = async (setUser) => {
 }
 
 async function save(setUser, user) {
-    if (user?.name === "" || user?.phone === "") throw new Error("Informe os campos obrigatórios");
+    if (user?.name === "") throw new Error("Informe os campos obrigatórios");
     user.visibleSaldo = false;
 
     await setUserLocal(user);
@@ -20,11 +19,7 @@ async function update(setUser, user, campo, valor) {
     let userAux = {...user};
     userAux[campo] = valor;
 
-    await setUserLocal(userAux);
-    let phone = await removeMaskPhone(userAux.phone);
-
-    await updateUser({displayName: userAux.name, phoneNumber: phone});
-
+    await updateUser({displayName: userAux.name});
     setUser(userAux);
 }
 
@@ -35,8 +30,7 @@ async function create(setUser, newUser) {
     let response = await createUser(newUser.email, newUser.password);
     if (response.type === "error") throw new Error(getFirebaseAuthErrorDescription(response.error.code));
 
-    let phone = await removeMaskPhone(newUser.phone);
-    await updateUser({displayName: newUser.name, phoneNumber: phone});
+    await updateUser({displayName: newUser.name});
 
     newUser.uid = response.user.uid;
     newUser.stsTokenManager = response.user.stsTokenManager;
@@ -58,7 +52,6 @@ async function login(setUser, email, password) {
         uid: user.uid,
         name: user.displayName,
         email: user.email,
-        phone: await addMaskPhone(user.phoneNumber),
         visibleSaldo: false,
         stsTokenManager: user.stsTokenManager
     }

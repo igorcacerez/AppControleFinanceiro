@@ -1,5 +1,6 @@
-import {auth} from "../../config/firebase";
+import {auth, db} from "../../config/firebase";
 import { createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword } from "firebase/auth";
+import {doc, setDoc} from "firebase/firestore";
 
 export const createUser = async (email, pass) => {
     return createUserWithEmailAndPassword(auth, email, pass)
@@ -36,4 +37,17 @@ export const loginUser = async (email, pass) => {
                 console.log(error)
                 return {type: "error", error: error}
             });
+}
+
+export const getInfoDataUser = async (uid) => {
+    const docRef = doc(db, "users", uid);
+    const docSnap = await docRef.get();
+
+    if (docSnap.exists()) return docSnap.data()
+    throw new Error("Documento não encontrado.");
+}
+
+export const setInfoDataUser = async (uid, data) => {
+    const docRef = doc(db, "users", uid);
+    await setDoc(docRef, data);
 }
