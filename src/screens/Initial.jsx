@@ -7,9 +7,11 @@ import {useContext} from "react";
 import * as LocalAuthentication from 'expo-local-authentication';
 import RegisterModal from "./initial/RegisterModal";
 import {Modals} from "../context/ModalContext";
+import {Finances} from "../context/FinanceContext";
 
 export default ({ navigation }) => {
     const {getUser, addUser} = useContext(Users)
+    const {loadFinances} = useContext(Finances)
     const modalContext = useContext(Modals)
 
     let user = getUser()
@@ -27,7 +29,10 @@ export default ({ navigation }) => {
 
         console.log(result)
 
-        if (result.success) navigation.navigate("DrawerStack")
+        if (result.success){
+            await loadFinances(user)
+            navigation.navigate("DrawerStack")
+        }
     }
 
     return (

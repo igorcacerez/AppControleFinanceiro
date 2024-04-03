@@ -4,20 +4,16 @@ import FinanceService from "../services/FinanceService"
 const Finances = createContext();
 
 const FinanceProvider = ({ children }) => {
-
     const [finance, setFinance] = useState([])
 
-    useEffect(() => {
-        FinanceService.loadFinances(setFinance)
-    }, []);
-
-    const addFinance = (item) => FinanceService.add(setFinance, finance, item)
+    const addFinance = (item, user) => FinanceService.add(setFinance, finance, item, user)
     const getFinance = (tipe) => FinanceService.get(finance, tipe)
-    const removeFinance = (index) => FinanceService.remove(setFinance, finance, index)
+    const removeFinance = (index, user) => FinanceService.remove(setFinance, finance, index, user)
     const getBalanceFinance = () => FinanceService.getBalance(finance)
+    const loadFinances = (user) => FinanceService.loadFinances(setFinance, user)
 
     return(
-        <Finances.Provider value={{addFinance, getFinance, removeFinance, getBalanceFinance}}>
+        <Finances.Provider value={{addFinance, getFinance, removeFinance, getBalanceFinance, loadFinances}}>
             {children}
         </Finances.Provider>
     )

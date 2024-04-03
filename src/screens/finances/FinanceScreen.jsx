@@ -10,23 +10,24 @@ import {Finances} from "../../context/FinanceContext";
 import ListAll from "./ListAll";
 import {Alert, TouchableOpacity} from "react-native";
 import InserModal from "./InserModal";
+import {Users} from "../../context/UserContext";
 
 export default function({navigation, route}) {
   const { type } = route.params;
 
   const modalContext = useContext(Modals);
   const {addFinance, getBalanceFinance, getFinance, removeFinance} = useContext(Finances)
+  const {getUser} = useContext(Users)
 
   let title = type === "receita" ? "Minhas receitas" : "Minhas despesas"
   let text = type === "receita" ? "Não possui receitas cadastradas" : "Não possui despesas cadastradas"
   let balance = getBalanceFinance()
-
-  let id = getFinance()[getFinance().length - 1]?.id + 1 || 1
+  let user = getUser()
 
   const handleRemove = (id) => {
       Alert.alert("Atenção", "Deseja realmente excluir?", [
             {text: "Cancelar",  style: 'cancel'},
-            {text: "Deletar", onPress: () => removeFinance(id)}
+            {text: "Deletar", onPress: () => removeFinance(id, user)}
         ])
   }
 
@@ -49,7 +50,7 @@ export default function({navigation, route}) {
                      remove={handleRemove} not={text} />
         </Container>
 
-        <InserModal type={type} addAction={addFinance} id={id} />
+        <InserModal type={type} addAction={addFinance} user={user} />
 
         <FloatButton press={modalContext.onOpen} />
     </>

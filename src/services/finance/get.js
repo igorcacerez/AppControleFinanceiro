@@ -1,3 +1,5 @@
+import loadFinances from "./loadFinances";
+
 /**
  * Retorna os dados de acordo com o tipo
  * @param {Object} data

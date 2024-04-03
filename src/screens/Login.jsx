@@ -4,15 +4,18 @@ import Input from "../adapters/Input";
 import Logo from "../components/ui/utils/Logo";
 import colors from "../design/colors";
 import {Users} from "../context/UserContext";
+import {Finances} from "../context/FinanceContext";
 
 export default ({ navigation }) => {
     const {login} = useContext(Users)
+    const {loadFinances} = useContext(Finances)
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const handleLogin = async () => {
         try {
             await login(email, password)
+            await loadFinances()
             navigation.navigate("DrawerStack")
         } catch (e) {
             Alert.alert("Erro", e.message)

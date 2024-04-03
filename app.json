@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "aula-3---navegando-entre-telas",
+    "name": "invest",
     "slug": "snack-7bb4c417-f55a-4d60-a77d-8f87cb38f186",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#343131"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -20,7 +20,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#000000"
+        "backgroundColor": "#343131"
       },
       "permissions": ["android.permission.DETECT_SCREEN_CAPTURE"]
     },

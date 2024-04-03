@@ -10,7 +10,7 @@ export default ({ data, title, pb = 0, limit}) => {
 
     const listaItem = () => {
         // Verifica se existe movimentações
-        if (data.length <= 0) return <Text style={styles.text}>Você não possui movimentações</Text>
+        if (data.length <= 0 || !Array.isArray(data)) return <Text style={styles.text}>Você não possui movimentações</Text>
 
         // Limita a quantidade de itens a serem exibidos
         if (limit) data = data.slice(0, limit)

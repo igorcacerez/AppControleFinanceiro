@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import Container from "../components/ui/layouts/Container";
 import Header from "../components/Header";
 import ViewCenter from "../components/ui/layouts/ViewCenter";
@@ -11,8 +11,8 @@ export default function Home({ navigation }) {
   const {getBalanceFinance, getFinance} = useContext(Finances)
   const {getUser} = useContext(Users)
 
-  let balance = getBalanceFinance()
   let lastItems = getFinance()
+  let balance = getBalanceFinance()
   let profile = getUser()
 
   profile.balance = balance.saldo

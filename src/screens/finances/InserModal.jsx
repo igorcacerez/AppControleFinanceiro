@@ -9,7 +9,7 @@ import {TextInputMask} from "react-native-masked-text";
 import * as React from "react";
 import {moneyFormatToNumber} from "../../utils/money";
 
-export default ({type, addAction, id}) => {
+export default ({type, addAction, user}) => {
     const modalContext = useContext(Modals)
 
     const ref = useRef()
@@ -32,10 +32,11 @@ export default ({type, addAction, id}) => {
             let limparValor = moneyFormatToNumber(value)
 
             addAction({
-                id, date, type,
                 title: name,
-                value: limparValor
-            })
+                value: limparValor,
+                type: type,
+                date: date
+            }, user)
 
             modalContext.onClose()
             clear()
