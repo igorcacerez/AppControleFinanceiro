@@ -14,8 +14,8 @@ export default ({ navigation }) => {
 
     const handleLogin = async () => {
         try {
-            await login(email, password)
-            await loadFinances()
+            let user = await login(email, password)
+            await loadFinances(user)
             navigation.navigate("DrawerStack")
         } catch (e) {
             Alert.alert("Erro", e.message)

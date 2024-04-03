@@ -16,7 +16,7 @@ export default ( { saveUser, navigation }) => {
 
     async function handleAdd(){
         try {
-            await createUser({name, phone, email, password})
+            await createUser({name, email, password})
             navigation.navigate("DrawerStack")
         } catch (e) {
             Alert.alert("Erro", e.message)

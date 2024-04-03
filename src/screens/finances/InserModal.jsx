@@ -16,7 +16,7 @@ export default ({type, addAction, user}) => {
     const ref2 = useRef()
 
     const [name, setName] = useState("");
-    const [date, setDate] = useState("");
+    const [date, setDate] = useState(new Date().toLocaleDateString());
     const [value, setValue] = useState("");
 
     let title = type === "receita" ? "Adicionar receita" : "Adicionar despesa"

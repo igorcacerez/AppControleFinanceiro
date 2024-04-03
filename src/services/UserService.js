@@ -58,6 +58,7 @@ async function login(setUser, email, password) {
 
     await setUserLocal(userLocal);
     setUser(userLocal);
+    return userLocal;
 }
 
 export default {save, update, loadUser, create, login}
