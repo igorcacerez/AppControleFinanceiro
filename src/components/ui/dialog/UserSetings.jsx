@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Alert, StyleSheet, View} from 'react-native';
 import Dialog from "../../../adapters/dialog/Dialog";
-import Input from "../../../adapters/Input";
+import Input from "../../../adapters/inputs/Input";
 import {useContext, useState} from "react";
 import {Users} from "../../../context/UserContext";
 import ButtonLarge from "../buttons/ButtonLarge";

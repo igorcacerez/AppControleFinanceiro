@@ -1,7 +1,16 @@
-import colors from "../design/colors";
+import colors from "../../design/colors";
 import {TextInput} from "react-native-paper";
 
-export default ({label, placeholder, value, change, keyboardType, render, secure}) => {
+export default ({
+                    label,
+                    placeholder,
+                    value,
+                    change,
+                    keyboardType="default",
+                    render,
+                    secure,
+                    editable
+}) => {
     return (
         <TextInput
             mode="outlined"
@@ -15,6 +24,7 @@ export default ({label, placeholder, value, change, keyboardType, render, secure
             textColor={colors.primary}
             secureTextEntry={secure}
             render={render}
+            editable={editable}
         />
     )
 }

@@ -1,5 +1,5 @@
 import ViewCenter from "../../components/ui/layouts/ViewCenter";
-import Input from "../../adapters/Input";
+import Input from "../../adapters/inputs/Input";
 import ButtonLarge from "../../components/ui/buttons/ButtonLarge";
 import DragModal from "../../components/ui/modals/DragModal";
 import {useContext, useState} from "react";

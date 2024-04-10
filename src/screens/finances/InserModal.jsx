@@ -2,28 +2,27 @@ import ViewCenter from "../../components/ui/layouts/ViewCenter";
 import {Alert, Text, TouchableOpacity} from "react-native";
 import DragModal from "../../components/ui/modals/DragModal";
 import {useContext, useRef, useState} from "react";
-import Input from "../../adapters/Input";
+import Input from "../../adapters/inputs/Input";
 import ButtonLarge from "../../components/ui/buttons/ButtonLarge";
 import {Modals} from "../../context/ModalContext";
 import {TextInputMask} from "react-native-masked-text";
 import * as React from "react";
 import {moneyFormatToNumber} from "../../utils/money";
+import InputDate from "../../adapters/inputs/InputDate";
 
 export default ({type, addAction, user}) => {
     const modalContext = useContext(Modals)
-
     const ref = useRef()
-    const ref2 = useRef()
 
     const [name, setName] = useState("");
-    const [date, setDate] = useState(new Date().toLocaleDateString());
+    const [date, setDate] = useState(new Date());
     const [value, setValue] = useState("");
 
     let title = type === "receita" ? "Adicionar receita" : "Adicionar despesa"
 
     const clear = () => {
         setName("")
-        setDate("")
+        setDate(new Date())
         setValue("")
     }
 
@@ -52,20 +51,11 @@ export default ({type, addAction, user}) => {
                        placeholder={"Ex: Salário ou Aluguel"}
                        value={name} change={setName} />
 
-                <Input label={"Data da " + type}
-                           placeholder={"Ex: 01/01/2021"}
-                           value={date}
-                           keyboardType={"numeric"}
-                           render={(props) => (
-                               <TextInputMask
-                                   {...props}
-                                   value={date}
-                                   type="datetime"
-                                   ref={ref}
-                                   onChangeText={(text) => setDate(text)}
-                               />
-                           )}
-                    />
+                <InputDate
+                    label={"Data da " + type}
+                    date={date}
+                    setDate={setDate}
+                />
 
                 <Input label={"Valor da " + type}
                         placeholder={"Ex: 300.00"}
@@ -76,7 +66,7 @@ export default ({type, addAction, user}) => {
                                {...props}
                                value={value}
                                type="money"
-                               ref={ref2}
+                               ref={ref}
                                onChangeText={(text) => setValue(text)}
                            />
                         )}

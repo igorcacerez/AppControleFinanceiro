@@ -1,6 +1,6 @@
 import {View, Text, ImageBackground, StyleSheet, TouchableOpacity, Alert} from "react-native";
 import React, {useContext, useState} from "react";
-import Input from "../adapters/Input";
+import Input from "../adapters/inputs/Input";
 import Logo from "../components/ui/utils/Logo";
 import colors from "../design/colors";
 import {Users} from "../context/UserContext";
